@@ -1,0 +1,38 @@
+.container {
+  position: relative;
+  max-width: 80vw;
+  width: 100%;
+  background-color: #fff;
+  margin: 50px 15px;
+  padding: 10px 20px;
+  border-radius: 7px;
+  margin: 5px auto;
+}
+
+.form{
+  display: flex;
+}
+
+.form input{
+  flex-grow: 1;
+  height: 30px;
+  border-radius: 5px;
+}
+
+.form button{
+  background-color: burlywood;
+  border: none;
+  color: white;
+  margin-left: 5px;
+  border-radius: 5px;
+  padding: 2px 20px;
+}
+
+.iframe-div{
+  display: flex;
+}
+
+.iframe-div p{
+  margin-left: 10px;
+}
+
