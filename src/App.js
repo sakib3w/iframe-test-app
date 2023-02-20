@@ -4,19 +4,22 @@ import "./App.css";
 function App() {
   const iFrameRef = useRef(null);
   const [recievedMessage, setRecievedMessage] = useState([]);
-  const [message, setMessage] = useState([]);
+  const [message, setMessage] = useState("");
+
+  console.log(recievedMessage);
 
   const sendMessage = () => {
     if (!iFrameRef.current) return;
     iFrameRef.current.contentWindow.postMessage(
       message,
-      "http://127.0.0.1:5173"
+      // "https://majestic-boba-6644c7.netlify.app/"
+      "http://localhost:3001"
     );
   };
 
   useEffect(() => {
     window.addEventListener("message", function (e) {
-      if (e.origin !== "http://127.0.0.1:5173") return;
+      if (e.origin !== "http://localhost:3001") return;
       setRecievedMessage(e.data);
     });
   }, []);
@@ -28,7 +31,7 @@ function App() {
         <input
           type="text"
           name="messsage"
-          onBlur={(e) => setMessage([...message, e.target.value])}
+          onBlur={(e) => setMessage(e.target.value)}
         />
         <button
           onClick={() => {
@@ -45,15 +48,15 @@ function App() {
       <div className="iframe-div">
         <iframe
           ref={iFrameRef}
-          src="http://127.0.0.1:5173"
-          width="600"
-          height="300"
+          src="http://localhost:3001"
+          width="400"
+          height="490"
           title="Child iframe"
+          style={{ borderRadius: "10px" }}
         ></iframe>
         <div>
-          {recievedMessage?.map((msg, i) => (
-            <p key={i}>{msg}</p>
-          ))}
+          <p>{recievedMessage[0]}</p>
+          {recievedMessage[1] && <p>You have clicked : {recievedMessage[1]}</p>}
         </div>
       </div>
     </div>
