@@ -6,13 +6,10 @@ function App() {
   const [recievedMessage, setRecievedMessage] = useState([]);
   const [message, setMessage] = useState("");
 
-  console.log(recievedMessage);
-
   const sendMessage = () => {
     if (!iFrameRef.current) return;
     iFrameRef.current.contentWindow.postMessage(
       message,
-      // "https://majestic-boba-6644c7.netlify.app/"
       "http://localhost:3001"
     );
   };
